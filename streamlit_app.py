@@ -17,7 +17,7 @@ st.set_page_config(page_title='Miluim_MakeItEasy', page_icon='🤖')
 
 filled_form = True
 
-st.title("Homepage")
+st.title("דף בית")
 if st.button("Personal Info"):
     if filled_form:
         # Example options inside slider
@@ -95,7 +95,7 @@ with st.expander('Main Questionnaire'):
     if identification and not identification.isdigit():
         st.error("ID should only contain numbers.")
         
-    date_of_birth = st.date_input('Date of Birth')
+    date_of_birth = st.date_input('Date of Birth', min_value=datetime(1900, 1, 1), max_value=datetime(2025, 12, 31))
     if not is_at_least_18_years_ago(date_of_birth):
         st.error("You must be at least 18 years old.")
     
