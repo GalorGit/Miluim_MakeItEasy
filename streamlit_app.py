@@ -196,4 +196,9 @@ if st.button('Submit'):
 
 # ********************************
 
-with st.expander('Abou
+with st.expander('About this app'):
+  st.markdown('**What can this app do?**')
+  st.info('This app allow users to build a machine learning (ML) model in an end-to-end workflow. Particularly, this encompasses data upload, data pre-processing, ML model building and post-model analysis.')
+
+  st.markdown('**How to use the app?**')
+  st.warning('To engage with the app, go to the sidebar and 1. Select a data set
