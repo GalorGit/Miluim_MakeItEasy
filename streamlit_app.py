@@ -74,9 +74,9 @@ with st.expander('Main Questionnaire'):
     st.markdown('**Personal Information**')
 
     # Collecting basic information in Hebrew
-    hebrew_first_name = st.text_input('First Name (Hebrew)').strip()
-    if hebrew_first_name and not contains_only_hebrew(hebrew_first_name):
-        st.error("First Name (Hebrew) should only contain Hebrew letters, spaces, or hyphens.")
+    #hebrew_first_name = st.text_input('First Name (Hebrew)').strip()
+    #if hebrew_first_name and not contains_only_hebrew(hebrew_first_name):
+     #   st.error("First Name (Hebrew) should only contain Hebrew letters, spaces, or hyphens.")
     
     # hebrew_surname = st.text_input('Surname (Last Name) (Hebrew)').strip()
     # if hebrew_surname and not contains_only_hebrew(hebrew_surname):
