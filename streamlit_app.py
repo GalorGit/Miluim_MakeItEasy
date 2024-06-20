@@ -8,9 +8,133 @@ import altair as alt
 import time
 import zipfile
 
+
+
 # Page title
-st.set_page_config(page_title='ML Model Building', page_icon='🤖')
-st.title('🤖 ML Model Building')
+st.set_page_config(page_title='Miluim_MakeItEasy', page_icon='🤖')
+
+
+filled_form = True
+
+st.title("Homepage")
+if st.button("Personal Info"):
+    if filled_form:
+        # Example options inside slider
+        st.checkbox("My Reimbursement")
+        st.checkbox("Information Left")
+    else:
+        st.button("Fill the Form")
+
+
+
+if st.button("Immediate Help"):
+    # Example options inside slider
+    st.write("Hotlines")
+    st.write("Aid Fund")
+    st.write("Reserved Website")
+
+
+if st.button("What Do I Deserve?"):
+    # Example options inside slider
+    st.write("National Insurance Institute")
+    st.write("Ministry of Interior")
+    st.write("Funds")
+
+
+
+
+
+
+
+
+
+
+
+# _____________________________________________________
+
+
+# Creating an expander for the main questionnaire
+with st.expander('Main Questionnaire'):
+    st.markdown('**First Questionnaire**')
+
+    # Collecting basic information
+    full_name = st.text_input('Full Name')
+    date_of_birth = st.date_input('Date of Birth')
+    gender = st.selectbox('Gender', ['Male', 'Female', 'Other'])
+    marital_status = st.selectbox('Marital Status', ['Single', 'Married', 'Divorced', 'Widowed'])
+    nationality = st.text_input('Nationality')
+    
+    # Address Information
+    st.markdown('**Address**')
+    street_address = st.text_input('Street Address')
+    city = st.text_input('City')
+    state_province = st.text_input('State/Province')
+    postal_code = st.text_input('Postal/ZIP Code')
+    country = st.text_input('Country')
+    
+    # Contact Information
+    st.markdown('**Contact Information**')
+    phone_number = st.text_input('Phone Number')
+    email_address = st.text_input('Email Address')
+
+    # Children Information
+    st.markdown('**Children Information**')
+    num_children = st.number_input('Number of Children', min_value=0, step=1)
+
+    children = []
+    for i in range(num_children):
+        child_name_key = f'child_name_{i}'
+        child_name = st.text_input(f'Full Name of Child {i+1}', key=child_name_key)
+
+        # Update the section title with the child's name or a default label
+        section_title = child_name if child_name else f'Child {i+1}'
+        
+        st.markdown(f'**{section_title} Details**')
+        child_age = st.number_input(f'Age of {section_title}', min_value=0, step=1, key=f'child_age_{i}')
+        child_gender = st.selectbox(f'Gender of {section_title}', ['Male', 'Female', 'Other'], key=f'child_gender_{i}')
+        child_adopted = st.checkbox(f'Is {section_title} adopted?', key=f'child_adopted_{i}')
+        child_lives_home = st.checkbox(f'Does {section_title} live at home?', key=f'child_lives_home_{i}')
+
+        # Store child details in a dictionary
+        child_info = {
+            'name': child_name,
+            'age': child_age,
+            'gender': child_gender,
+            'adopted': child_adopted,
+            'lives_home': child_lives_home
+        }
+        children.append(child_info)
+
+# Display the collected information (for testing purposes)
+if st.button('Submit'):
+    st.write('Full Name:', full_name)
+    st.write('Date of Birth:', date_of_birth)
+    st.write('Gender:', gender)
+    st.write('Marital Status:', marital_status)
+    st.write('Nationality:', nationality)
+    st.write('Street Address:', street_address)
+    st.write('City:', city)
+    st.write('State/Province:', state_province)
+    st.write('Postal/ZIP Code:', postal_code)
+    st.write('Country:', country)
+    st.write('Phone Number:', phone_number)
+    st.write('Email Address:', email_address)
+    st.write('Number of Children:', num_children)
+
+    for i, child in enumerate(children):
+        child_label = child['name'] if child['name'] else f'Child {i+1}'
+        st.write(f'{child_label} Name:', child['name'])
+        st.write(f'{child_label} Age:', child['age'])
+        st.write(f'{child_label} Gender:', child['gender'])
+        st.write(f'{child_label} Adopted:', 'Yes' if child['adopted'] else 'No')
+        st.write(f'{child_label} Lives at Home:', 'Yes' if child['lives_home'] else 'No')
+
+
+
+
+
+
+# ********************************
 
 with st.expander('About this app'):
   st.markdown('**What can this app do?**')
