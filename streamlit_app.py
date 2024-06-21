@@ -52,9 +52,18 @@ if st.button("What Do I Deserve?"):
 
 
 # _____________________________________________________
+# n
+
 
 # Setting up the title of the app
 st.title('Personal Details Form')
+
+file = st.file_uploader("Upload PDF", type=['pdf'])
+if file is not None:
+    st.success("File uploaded successfully.")
+    # You can process the uploaded file here, such as saving it or displaying its contents
+else:
+    st.info("Please upload a PDF file.")
 
 # Function to validate if a string contains only Hebrew letters
 def contains_only_hebrew(input_string):
