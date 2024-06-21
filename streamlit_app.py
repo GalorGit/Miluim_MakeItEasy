@@ -431,6 +431,3 @@ if uploaded_file or example_data:
 # Ask for CSV upload if none is detected
 else:
     st.warning('👈 Upload a CSV file or click *"Load example data"* to get started!')
-this is our streamlit code.
-We want to save all the data that we get in this code
-dont earase the code, just add what you need in order to be able to save the data into a data framw once the user clicks on submit
