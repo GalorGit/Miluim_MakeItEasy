@@ -87,12 +87,12 @@ with st.expander('Main Questionnaire'):
     #     st.error("Surname (Hebrew) should only contain Hebrew letters, spaces, or hyphens.")
     
 
-file = st.file_uploader("Upload PDF", type=['pdf'])
-if file is not None:
-    st.success("File uploaded successfully.")
-    # You can process the uploaded file here, such as saving it or displaying its contents
-else:
-    st.info("Please upload a PDF file.")
+    file = st.file_uploader("Upload PDF", type=['pdf'])
+    if file is not None:
+        st.success("File uploaded successfully.")
+        # You can process the uploaded file here, such as saving it or displaying its contents
+    else:
+        st.info("Please upload a PDF file.")
 
 
 
