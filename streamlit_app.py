@@ -8,6 +8,7 @@ import altair as alt
 import time
 import zipfile
 from datetime import datetime, date
+import pdf_reader
 
 
 
@@ -422,7 +423,7 @@ if uploaded_file or example_data:
     df_prediction = pd.concat([df_train, df_test], axis=0)
     
     prediction_col = st.columns((2, 0.2, 3))
-    
+    #ccc
     # Display dataframe
     with prediction_col[0]:
         st.dataframe(df_prediction, height=320, use_container_width=True)
