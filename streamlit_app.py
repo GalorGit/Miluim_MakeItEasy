@@ -8,7 +8,7 @@ import altair as alt
 import time
 import zipfile
 from datetime import datetime, date
-
+from pdf_reader import PdfFileReader
 
 
 # Page title
@@ -58,7 +58,8 @@ if st.button("What Do I Deserve?"):
 # Setting up the title of the app
 st.title('Personal Details Form')
 
-
+def read_pdf(file):
+        return PdfFileReader(file)
 
 # Function to validate if a string contains only Hebrew letters
 def contains_only_hebrew(input_string):
@@ -73,6 +74,37 @@ def is_at_least_18_years_ago(input_date):
     today = date.today()
     return (today.year - input_date.year) > 18 or ((today.year - input_date.year) == 18 and (today.month, today.day) >= (input_date.month, input_date.day))
 
+file = st.file_uploader("Upload PDF", type=['pdf'])
+pdf_data = {}
+if file is not None:
+    st.success("File uploaded successfully.")
+    pdf_data = read_pdf(file)
+else:
+    st.info("Please upload a PDF file.")
+
+# Initialize a dictionary to store collected data
+form_data = {}
+
+def PdfFileReader(file):
+    # This function reads the PDF file and extracts relevant information.
+    pdf = PdfFileReader(file)
+    data = {}
+    first_page = pdf.pages[0]
+    text = first_page.extract_text()
+    data['pdf_name'] = extract_value_from_text(text, 'Name:')
+    data['pdf_dob'] = extract_value_from_text(text, 'Date of Birth:')
+    return data
+
+def extract_value_from_text(text, field):
+    # Helper function to extract value for a specific field from text
+    lines = text.split('\n')
+    for line in lines:
+        if field in line:
+            return line.replace(field, '').strip()
+    return None
+
+
+
 # Creating an expander for the main questionnaire
 with st.expander('Main Questionnaire'):
     st.markdown('**Personal Information**')
@@ -86,13 +118,7 @@ with st.expander('Main Questionnaire'):
     # if hebrew_surname and not contains_only_hebrew(hebrew_surname):
     #     st.error("Surname (Hebrew) should only contain Hebrew letters, spaces, or hyphens.")
     
-
-    file = st.file_uploader("Upload PDF", type=['pdf'])
-    if file is not None:
-        st.success("File uploaded successfully.")
-        # You can process the uploaded file here, such as saving it or displaying its contents
-    else:
-        st.info("Please upload a PDF file.")
+    
 
 
 
@@ -112,6 +138,12 @@ with st.expander('Main Questionnaire'):
     date_of_birth = st.date_input('Date of Birth', min_value=datetime(1900, 1, 1), max_value=datetime(2025, 12, 31))
     if not is_at_least_18_years_ago(date_of_birth):
         st.error("You must be at least 18 years old.")
+
+
+
+
+
+        
     
     gender = st.selectbox('Gender', ['זכר', 'נקבה'])
     marital_status = st.selectbox('Marital Status', ['רווק/ה', 'נשוי/ה', 'גרוש/ה', 'אלמן/ה'])
@@ -204,6 +236,21 @@ if st.button('Submit'):
         st.write(f'{child_label} Gender:', child['gender'])
         st.write(f'{child_label} Adopted:', 'Yes' if child['adopted'] else 'No')
         st.write(f'{child_label} Lives at Home:', 'Yes' if child['lives_home'] else 'No')
+
+
+combined_data = {**pdf_data, **form_data}
+combined_df = pd.DataFrame([combined_data])
+st.write('Combined Data:')
+st.dataframe(combined_df)
+
+
+combined_df.to_csv('combined_data.csv', index=False)
+st.download_button(
+        label='Download Combined Data',
+        data=combined_df.to_csv(index=False).encode('utf-8'),
+        file_name='combined_data.csv',
+        mime='text/csv'
+        )
 
 
 
