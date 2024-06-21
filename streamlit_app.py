@@ -83,13 +83,13 @@ with st.expander('Main Questionnaire'):
     st.markdown('**Personal Information**')
 
     # Collecting basic information in Hebrew
-    hebrew_first_name = st.text_input('First Name (Hebrew)').strip()
-    if hebrew_first_name and not contains_only_hebrew(hebrew_first_name):
-        st.error("First Name (Hebrew) should only contain Hebrew letters, spaces, or hyphens.")
+    #hebrew_first_name = st.text_input('First Name (Hebrew)').strip()
+    #if hebrew_first_name and not contains_only_hebrew(hebrew_first_name):
+     #   st.error("First Name (Hebrew) should only contain Hebrew letters, spaces, or hyphens.")
     
-    hebrew_surname = st.text_input('Surname (Last Name) (Hebrew)').strip()
-    if hebrew_surname and not contains_only_hebrew(hebrew_surname):
-        st.error("Surname (Hebrew) should only contain Hebrew letters, spaces, or hyphens.")
+    # hebrew_surname = st.text_input('Surname (Last Name) (Hebrew)').strip()
+    # if hebrew_surname and not contains_only_hebrew(hebrew_surname):
+    #     st.error("Surname (Hebrew) should only contain Hebrew letters, spaces, or hyphens.")
     
     # Collecting basic information in English
     english_first_name = st.text_input('First Name (English)').strip()
@@ -100,9 +100,9 @@ with st.expander('Main Questionnaire'):
     if english_surname and not contains_only_english(english_surname):
         st.error("Surname (English) should only contain English letters, spaces, or hyphens.")
     
-    identification = st.text_input('Identification (e.g., SSN, National ID)').strip()
-    if identification and not identification.isdigit():
-        st.error("ID should only contain numbers.")
+    # identification = st.text_input('Identification (e.g., SSN, National ID)').strip()
+    # if identification and not identification.isdigit():
+    #     st.error("ID should only contain numbers.")
         
     date_of_birth = st.date_input('Date of Birth', min_value=datetime(1900, 1, 1), max_value=datetime(2025, 12, 31))
     if not is_at_least_18_years_ago(date_of_birth):
@@ -123,7 +123,7 @@ with st.expander('Main Questionnaire'):
     st.markdown('**Address**')
     street_address = st.text_input('Street Address').strip()
     city = st.text_input('City').strip()
-    state_province = st.text_input('State/Province').strip()
+    # state_province = st.text_input('State/Province').strip()
     postal_code = st.text_input('Postal/ZIP Code').strip()
     country = st.text_input('Country').strip()
     
@@ -170,7 +170,7 @@ with st.expander('Main Questionnaire'):
 # Display the collected information (for testing purposes)
 if st.button('Submit'):
     st.write('First Name (Hebrew):', hebrew_first_name)
-    st.write('Surname (Hebrew):', hebrew_surname)
+    # st.write('Surname (Hebrew):', hebrew_surname)
     st.write('First Name (English):', english_first_name)
     st.write('Surname (English):', english_surname)
     st.write('Date of Birth:', date_of_birth)
@@ -180,11 +180,11 @@ if st.button('Submit'):
     st.write('Birth Country:', birth_country)
     if birth_country.lower() != 'israel':
         st.write('Year of Aliyah:', year_of_aliyah)
-    st.write('Identification:', identification)
+    # st.write('Identification:', identification)
     st.write('HMO Name:', hmo_name)
     st.write('City:', city)
     st.write('Street Address:', street_address)
-    st.write('State/Province:', state_province)
+    # st.write('State/Province:', state_province)
     st.write('Postal/ZIP Code:', postal_code)
     st.write('Country:', country)
     st.write('Phone Number:', phone_number)
