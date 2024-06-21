@@ -160,7 +160,7 @@ with st.expander('Main Questionnaire'):
         st.error("You must be at least 18 years old.")
 
     gender = st.selectbox('Gender', ['זכר', 'נקבה'])
-    marital_status = st.selectbox('Marital Status', ['רווק/ה', 'נשוי/ה', 'גרוש/ה', 'אלמן/ה'])
+    marital_status = st.selectbox('Marital Status', ['רווק/ה', 'נשוי/אה', 'גרוש/ה', 'אלמן/ה'])
     nationality = st.text_input('Nationality').strip()
     birth_country = st.text_input('Birth Country:').strip()
 
