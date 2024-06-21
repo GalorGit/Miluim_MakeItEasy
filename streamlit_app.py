@@ -8,7 +8,7 @@ import altair as alt
 import time
 import zipfile
 from datetime import datetime, date
-import pdfplumber  # Assuming using pdfplumber, adjust if using another library
+# import pdfplumber  # Assuming using pdfplumber, adjust if using another library
 import re  # For regular expressions
 
 # Page title
