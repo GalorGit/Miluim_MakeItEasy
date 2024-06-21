@@ -58,12 +58,7 @@ if st.button("What Do I Deserve?"):
 # Setting up the title of the app
 st.title('Personal Details Form')
 
-file = st.file_uploader("Upload PDF", type=['pdf'])
-if file is not None:
-    st.success("File uploaded successfully.")
-    # You can process the uploaded file here, such as saving it or displaying its contents
-else:
-    st.info("Please upload a PDF file.")
+
 
 # Function to validate if a string contains only Hebrew letters
 def contains_only_hebrew(input_string):
@@ -91,6 +86,16 @@ with st.expander('Main Questionnaire'):
     # if hebrew_surname and not contains_only_hebrew(hebrew_surname):
     #     st.error("Surname (Hebrew) should only contain Hebrew letters, spaces, or hyphens.")
     
+
+file = st.file_uploader("Upload PDF", type=['pdf'])
+if file is not None:
+    st.success("File uploaded successfully.")
+    # You can process the uploaded file here, such as saving it or displaying its contents
+else:
+    st.info("Please upload a PDF file.")
+
+
+
     # Collecting basic information in English
     english_first_name = st.text_input('First Name (English)').strip()
     if english_first_name and not contains_only_english(english_first_name):
